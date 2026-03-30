@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nasza Historia ♥</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blush: #f9e0e0;
+    --rose: #d4607a;
+    --deep-rose: #9b3454;
+    --cream: #fdf6f0;
+    --warm: #f0e4d7;
+    --text: #3a2a30;
+    --text-muted: #8a6a72;
+    --gold: #c9a96e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(160deg, #fce8ec 0%, #fdf6f0 50%, #fdeee8 100%);
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(212,96,122,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(201,169,110,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-hearts {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .heart-float {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: floatUp 8s ease-in infinite;
+    color: var(--rose);
+  }
+
+  @keyframes floatUp {
+    0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+    10%  { opacity: 0.4; }
+    90%  { opacity: 0.1; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(1.2) rotate(20deg); }
+  }
+
+  .hero-date {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.5rem;
+    animation: fadeDown 1s ease both;
+  }
+
+  .hero-names {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 700;
+    color: var(--deep-rose);
+    line-height: 1.1;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+
+  .hero-names span {
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--text-muted);
+    margin-top: 1rem;
+    animation: fadeDown 1s 0.4s ease both;
+  }
+
+  .hero-counter {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    animation: fadeDown 1s 0.6s ease both;
+  }
+
+  .counter-item {
+    text-align: center;
+  }
+
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--rose);
+    display: block;
+  }
+
+  .counter-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--rose), transparent);
+  }
+
+  @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 5rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: var(--deep-rose);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: var(--gold);
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  /* ─── NASZA HISTORIA ─── */
+  .our-story p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .our-story p.highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--deep-rose);
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline-section {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--blush) 50%, var(--cream) 100%);
+    max-width: 100%;
+    padding: 5rem 1.5rem;
+  }
+
+  .timeline-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .timeline {
+    position: relative;
+    margin-top: 3rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rose), transparent);
+    transform: translateX(-50%);
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    align-items: start;
+  }
+
+  .tl-item:nth-child(even) .tl-content { grid-column: 3; grid-row: 1; }
+  .tl-item:nth-child(even) .tl-dot     { grid-column: 2; grid-row: 1; }
+  .tl-item:nth-child(even) .tl-empty   { grid-column: 1; grid-row: 1; }
+
+  .tl-content {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 20px rgba(212,96,122,0.08);
+    border: 1px solid rgba(212,96,122,0.12);
+  }
+
+  .tl-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--deep-rose);
+    margin-bottom: 0.4rem;
+  }
+
+  .tl-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .tl-dot {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.2rem;
+  }
+
+  .tl-dot::after {
+    content: '♥';
+    color: var(--rose);
+    font-size: 1rem;
+    background: var(--cream);
+    padding: 2px;
+  }
+
+  .tl-empty { }
+
+  /* ─── GALERIA ─── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--warm);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(212,96,122,0.2);
+  }
+
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--rose);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+
+  .gallery-placeholder .icon {
+    font-size: 2rem;
+    opacity: 0.4;
+  }
+
+  .gallery-item .caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(to top, rgba(58,42,48,0.7), transparent);
+    color: white;
+    font-size: 0.85rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover .caption {
+    transform: translateY(0);
+  }
+
+  /* ─── POWODY ─── */
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .reason-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(212,96,122,0.12);
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .reason-card:hover {
+    box-shadow: 0 4px 20px rgba(212,96,122,0.15);
+    transform: translateY(-3px);
+  }
+
+  .reason-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--blush);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .reason-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ─── CYTAT ─── */
+  .quote-section {
+    background: var(--deep-rose);
+    max-width: 100%;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .quote-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    color: rgba(255,255,255,0.95);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-attr {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--blush);
+    color: var(--text-muted);
+  }
+
+  footer .names {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--rose);
+    margin-bottom: 0.5rem;
+  }
+
+  footer small {
+    font-size: 0.8rem;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .timeline::before { left: 20px; }
+    .tl-item { grid-template-columns: 40px 1fr; }
+    .tl-item:nth-child(even) .tl-content { grid-column: 2; }
+    .tl-item:nth-child(even) .tl-empty   { display: none; }
+    .tl-item .tl-empty                   { display: none; }
+    .hero-counter { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-hearts" id="hearts"></div>
+  <p class="hero-date">Od ✦ Twoja data tutaj</p>
+  <h1 class="hero-names">Twoje Imię<br>&amp; <span>Jej Imię</span></h1>
+  <p class="hero-sub">Nasza mała historia miłosna</p>
+
+  <div class="hero-counter">
+    <div class="counter-item">
+      <span class="counter-num" id="days">—</span>
+      <span class="counter-label">Dni razem</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-num" id="months">—</span>
+      <span class="counter-label">Miesięcy</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-num" id="years-together">—</span>
+      <span class="counter-label">Lat</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">Przewiń w dół</div>
+</div>
+
+<!-- ─── NASZA HISTORIA ─── -->
+<section class="our-story">
+  <span class="section-label">Rozdział pierwszy</span>
+  <h2 class="section-title">Nasza Historia</h2>
+  <div class="divider">♥</div>
+
+  <p class="highlight">
+    „Byli sobie raz dwoje ludzi, którzy znaleźli w sobie cały swój świat..."
+  </p>
+  <p>
+    Tutaj możesz napisać, jak się poznaliście. Opisz to pierwsze spotkanie — 
+    gdzie to było, jak się czułeś, co Cię w niej urzekło. 
+    Niech ta opowieść będzie prawdziwa i Wasza.
+  </p>
+  <p>
+    Możesz dodać więcej akapitów — opisać pierwsze randki, 
+    śmieszne momenty, wzruszające chwile. 
+    To jest Wasza prywatna strona, piszcie ją razem.
+  </p>
+</section>
+
+<!-- ─── TIMELINE ─── -->
+<div class="timeline-section">
+  <div class="timeline-inner">
+    <span class="section-label" style="text-align:center;display:block">Nasze chwile</span>
+    <h2 class="section-title" style="text-align:center">Kalendarium Miłości</h2>
+    <div class="divider">♥</div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-content">
+          <p class="tl-date">Styczeń 2024 · Data pierwszego spotkania</p>
+          <p class="tl-title">Pierwsze spotkanie</p>
+          <p class="tl-desc">Opisz jak i gdzie się spotkaliście po raz pierwszy. Co czułeś? Co powiedziałeś?</p>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-empty"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <p class="tl-date">Luty 2024 · Data pierwszej randki</p>
+          <p class="tl-title">Pierwsza prawdziwa randka</p>
+          <p class="tl-desc">Gdzie poszliście? Co jedliście? Kiedy wiedziałeś, że ona jest wyjątkowa?</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-content">
+          <p class="tl-date">Marzec 2024 · Ważna data</p>
+          <p class="tl-title">Zostaliśmy parą</p>
+          <p class="tl-desc">Ten dzień, który zmienił wszystko. Jak to się stało? Kto się odważył pierwszy?</p>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-empty"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <p class="tl-date">Lato 2024 · Kolejna data</p>
+          <p class="tl-title">Dodaj swój moment</p>
+          <p class="tl-desc">Każda para ma swoje wyjątkowe chwile — wakacje, niespodzianki, pierwsze „kocham Cię"...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── GALERIA ─── -->
+<section>
+  <span class="section-label">Wspomnienia w kadrze</span>
+  <h2 class="section-title">Nasza Galeria</h2>
+  <div class="divider">♥</div>
+  <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.8;margin-bottom:0.5rem">
+    Zastąp poniższe kafelki swoimi zdjęciami — wystarczy zmienić atrybut <code>src=""</code> na ścieżkę do Twojego pliku lub adres URL.
+  </p>
+
+  <div class="gallery-grid">
+
+    <!-- ZDJĘCIE: zmień src="" na ścieżkę do swojego zdjęcia -->
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Twoje zdjęcie</span>
+      </div>
+      <div class="caption">Wasza pierwsza randka</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Twoje zdjęcie</span>
+      </div>
+      <div class="caption">Wakacyjna przygoda</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Twoje zdjęcie</span>
+      </div>
+      <div class="caption">Ulubiony wspólny moment</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Twoje zdjęcie</span>
+      </div>
+      <div class="caption">Po prostu Wy</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Twoje zdjęcie</span>
+      </div>
+      <div class="caption">Jeszcze jeden piękny dzień</div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <span class="icon">📷</span>
+        <span>Twoje zdjęcie</span>
+      </div>
+      <div class="caption">I ten też</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── CYTAT ─── -->
+<div class="quote-section">
+  <div class="quote-inner">
+    <p class="quote-text">
+      „Możesz wpisać tu swój ulubiony cytat o miłości, 
+      fragment piosenki która jest wasza, 
+      albo coś co sam chcesz jej powiedzieć."
+    </p>
+    <p class="quote-attr">— Twój podpis lub źródło cytatu</p>
+  </div>
+</div>
+
+<!-- ─── POWODY ─── -->
+<section>
+  <span class="section-label">Prosto z serca</span>
+  <h2 class="section-title">Dlaczego Cię Kocham</h2>
+  <div class="divider">♥</div>
+
+  <div class="reasons-grid">
+    <div class="reason-card">
+      <span class="reason-num">01</span>
+      <p class="reason-text">Twój śmiech rozjaśnia każdy mój dzień. Opisz tutaj pierwszy powód.</p>
+    </div>
+    <div class="reason-card">
+      <span class="reason-num">02</span>
+      <p class="reason-text">Sprawiasz, że chcę być lepszym człowiekiem. Napisz swój powód.</p>
+    </div>
+    <div class="reason-card">
+      <span class="reason-num">03</span>
+      <p class="reason-text">Czuję się przy Tobie bezpiecznie jak nigdzie indziej. Twój powód.</p>
+    </div>
+    <div class="reason-card">
+      <span class="reason-num">04</span>
+      <p class="reason-text">Masz serce większe niż wszechświat. Kolejny Twój powód.</p>
+    </div>
+    <div class="reason-card">
+      <span class="reason-num">05</span>
+      <p class="reason-text">Nawet w zwykłych chwilach jesteś wyjątkowa. Twój powód.</p>
+    </div>
+    <div class="reason-card">
+      <span class="reason-num">06</span>
+      <p class="reason-text">Bo po prostu jesteś Ty. Ostatni (albo nie) powód.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p class="names">Dominika ♥ Michał</p>
+  <p><small>z miłością zrobione · <span id="year"></span></small></p>
+</footer>
+
+<script>
+  // ─── LICZNIK DNI ───
+  // ZMIEŃ TĘ DATĘ na datę Waszej rocznicy lub pierwszej randki:
+  const startDate = new Date('2025-02-27');
+
+  function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const months = Math.floor(days / 30.44);
+    const years = (days / 365.25).toFixed(1);
+
+    document.getElementById('days').textContent = days.toLocaleString('pl-PL');
+    document.getElementById('months').textContent = months;
+    document.getElementById('years-together').textContent = years;
+  }
+  updateCounter();
+
+  // ─── ROK W STOPCE ───
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ─── SERDUSZKA LATAJĄCE ───
+  const heartsContainer = document.getElementById('hearts');
+  const symbols = ['♥', '♡', '❤', '✦'];
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart-float';
+    h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    h.style.left = Math.random() * 100 + '%';
+    h.style.bottom = '-2rem';
+    h.style.animationDelay = (Math.random() * 8) + 's';
+    h.style.animationDuration = (6 + Math.random() * 6) + 's';
+    h.style.fontSize = (0.8 + Math.random() * 0.8) + 'rem';
+    h.style.opacity = '0';
+    heartsContainer.appendChild(h);
+  }
+</script>
+</body>
+</html>
