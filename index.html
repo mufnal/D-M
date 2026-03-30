@@ -445,11 +445,21 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 600px) {
-    .timeline::before { left: 20px; }
-    .tl-item { grid-template-columns: 40px 1fr; }
-    .tl-item:nth-child(even) .tl-content { grid-column: 2; }
+    .timeline::before { left: 16px; transform: none; }
+
+    .tl-item {
+      grid-template-columns: 32px 1fr;
+      grid-template-rows: auto;
+    }
+
+    .tl-item .tl-dot     { grid-column: 1; grid-row: 1; }
+    .tl-item .tl-content { grid-column: 2; grid-row: 1; }
+    .tl-item .tl-empty   { display: none; }
+
+    .tl-item:nth-child(even) .tl-content { grid-column: 2; grid-row: 1; }
+    .tl-item:nth-child(even) .tl-dot     { grid-column: 1; grid-row: 1; }
     .tl-item:nth-child(even) .tl-empty   { display: none; }
-    .tl-item .tl-empty                   { display: none; }
+
     .hero-counter { gap: 1.5rem; }
   }
 </style>
@@ -508,7 +518,7 @@
         <div class="tl-content">
           <p class="tl-date">Grudzień 2024 · Data pierwszej wiadomości</p>
           <p class="tl-title">Pierwsza wiadomość</p>
-          <p class="tl-desc">Skomplementowałem Twój uśmiech i czekałem z niepewnością aż mi odpowiesz </p>
+          <p class="tl-desc">Skomplementowałem Twój uśmiech i czekałem z niepewnością aż mi odpowiesz</p>
         </div>
         <div class="tl-dot"></div>
         <div class="tl-empty"></div>
@@ -554,10 +564,8 @@
   <h2 class="section-title">Nasza Galeria</h2>
   <div class="divider">♥</div>
 
-
   <div class="gallery-grid">
 
-    <!-- Wstawione zdjęcia użytkownika -->
     <div class="gallery-item">
       <img src="my1.jpg" alt="my1.jpg">
       <div class="caption">Pierwsze wspólne wesele</div>
@@ -643,7 +651,6 @@
 </footer>
 
 <script>
-  // ─── LICZNIK DNI ───
   const startDate = new Date('2025-02-27');
 
   function updateCounter() {
@@ -659,10 +666,8 @@
   }
   updateCounter();
 
-  // ─── ROK W STOPCE ───
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ─── SERDUSZKA LATAJĄCE ───
   const heartsContainer = document.getElementById('hearts');
   const symbols = ['♥', '♡', '❤', '✦'];
   for (let i = 0; i < 18; i++) {
